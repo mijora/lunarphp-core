@@ -165,7 +165,8 @@ class DiscountManager implements DiscountManagerInterface
                     });
                 },
                 fn ($query, $value) => $query->whereNull('coupon')->orWhere('coupon', '')
-            )->orderBy('priority', 'desc')
+            )->orderByRaw('coupon IS NULL, coupon ASC')
+            ->orderBy('priority', 'desc')
             ->orderBy('id')
             ->get();
     }
