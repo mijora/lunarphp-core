@@ -177,7 +177,7 @@ class AmountOff extends AbstractDiscountType
             ->reject(fn ($limitation) => ! $limitation->purchasable)
             ->map(fn ($limitation) => get_class($limitation->purchasable).'::'.$limitation->purchasable->id);
 
-        $lines = $cart->lines;
+        $lines = $cart->lines()->where('purchasable_type', 'product_variant')->get();
 
         if ($collectionIds->count()) {
             $lines = $lines->filter(function ($line) use ($collectionIds) {
