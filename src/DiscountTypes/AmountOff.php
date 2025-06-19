@@ -65,6 +65,9 @@ class AmountOff extends AbstractDiscountType
 
         //86c3xzp7j - coupon fixed amount applied per product, so coupon value multiplied, by lines number
         if (!$this->discount->purchasables->isEmpty() || !$this->discount->collections->isEmpty()) {
+            $line_quantity = $lines->sum(function ($line) {
+                return $line->quantity;
+            });
             $value = $value * count($lines);
         }
 
