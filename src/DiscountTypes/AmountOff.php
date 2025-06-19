@@ -68,7 +68,7 @@ class AmountOff extends AbstractDiscountType
             $line_quantity = $lines->sum(function ($line) {
                 return $line->quantity;
             });
-            $value = $value * count($lines);
+            $value = $value * $line_quantity;
         }
 
         $divisionalAmount = $value / $linesSubtotal;
