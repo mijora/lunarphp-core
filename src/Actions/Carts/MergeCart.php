@@ -59,6 +59,7 @@ class MergeCart
             $source->update([
                 'merged_id' => $target->id,
             ]);
+            $source->delete();
         });
 
         return $target;
