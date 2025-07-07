@@ -61,6 +61,6 @@ class CartSessionAuthListener
             return;
         }
 
-        CartSession::forget();
+        CartSession::forget(false);
     }
 }
