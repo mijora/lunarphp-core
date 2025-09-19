@@ -103,6 +103,8 @@ class CartAddress extends BaseModel implements Addressable, Contracts\CartAddres
         'first_name',
         'last_name',
         'company_name',
+        'company_code',
+        'vat_no',
         'line_one',
         'line_two',
         'line_three',
