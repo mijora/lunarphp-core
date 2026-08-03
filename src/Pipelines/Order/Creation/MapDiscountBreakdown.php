@@ -31,11 +31,14 @@ class MapDiscountBreakdown
             return (object) [
                 'discount_id' => $discount->discount->id,
                 'lines' => $discount->lines->map(function ($discountLine) use ($cartLinesMappedToOrderLines) {
+                    if (!isset($cartLinesMappedToOrderLines[$discountLine->line->id])) {
+                        return null;
+                    }
                     return (object) [
                         'quantity' => $discountLine->quantity,
-                        'line' => $cartLinesMappedToOrderLines[$discountLine->line->id] ?? null,
+                        'line' => $cartLinesMappedToOrderLines[$discountLine->line->id],
                     ];
-                }),
+                })->filter()->values(),
                 'total' => $discount->price,
             ];
         })->values()->all();
