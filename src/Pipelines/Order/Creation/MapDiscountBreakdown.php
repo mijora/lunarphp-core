@@ -33,7 +33,7 @@ class MapDiscountBreakdown
                 'lines' => $discount->lines->map(function ($discountLine) use ($cartLinesMappedToOrderLines) {
                     return (object) [
                         'quantity' => $discountLine->quantity,
-                        'line' => $cartLinesMappedToOrderLines[$discountLine->line->id],
+                        'line' => $cartLinesMappedToOrderLines[$discountLine->line->id] ?? null,
                     ];
                 }),
                 'total' => $discount->price,
